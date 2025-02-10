@@ -1,0 +1,288 @@
+/* Thiết lập nền gradient và căn giữa nội dung trong toàn bộ trang */
+body {
+  background: linear-gradient(135deg, #6c80d8, #764ba2);
+  font-family: 'Arial', sans-serif;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Thiết lập chung cho ứng dụng, đảm bảo căn giữa nội dung */
+.app {
+  font-family: 'Arial', sans-serif;
+  color: white;
+  text-align: center;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Thiết lập giao diện cho tiêu đề */
+.header {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #334155; /* Màu nền tối */
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* Thiết lập khoảng cách cho tiêu đề */
+.title {
+  margin: 0;
+  padding: 10px;
+}
+
+/* Cấu trúc bảng trò chơi dạng lưới 3x3 */
+.board {
+  
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  gap: 8px;
+  margin: 30px auto;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Thiết lập ô vuông trong bảng trò chơi */
+.square {
+  width: 120px;
+  height: 120px;
+  font-size: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Định dạng màu cho ký hiệu X và O */
+.square.X {
+  color: blue;
+}
+
+.square.O {
+  color: red;
+}
+
+/* Hiệu ứng khi di chuột vào ô vuông */
+.square:hover {
+  transform: scale(1.1);
+  background: #ffeb3b;
+}
+
+/* Hiệu ứng khi ô vuông là một phần của đường thắng */
+.square.winning .content {
+  animation: winningEffect 1s infinite alternate;
+  color: #ff7300;
+  text-shadow: 4px 4px 8px rgba(255, 165, 0, 0.8);
+}
+
+/* Animation làm nổi bật ô thắng */
+@keyframes winningEffect {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Thiết lập bảng điểm */
+.scoreboard {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  margin: 20px auto;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hiệu ứng khi di chuột vào bảng điểm */
+.scoreboard:hover {
+  transform: scale(1.05);
+}
+
+/* Định dạng tiêu đề của bảng điểm */
+.scoreboard h2 {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #ffeb3b;
+  text-transform: uppercase;
+}
+
+/* Hiển thị danh sách điểm theo cột */
+.score-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Định dạng từng mục trong bảng điểm */
+.score-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hiệu ứng khi di chuột vào mục tỷ số */
+.score-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Định dạng tên người chơi */
+.player-name {
+  color: #ffeb3b;
+  font-weight: bold;
+}
+
+/* Định dạng điểm số */
+.player-score {
+  color: white;
+  font-size: 22px;
+}
+
+/* Cửa sổ thông báo trạng thái người chiến thắng */
+.status {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 15px 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Hiệu ứng mờ dần khi hiện trạng thái */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -55%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Hiệu ứng ba dấu chấm chạy liên tục */
+@keyframes dots {
+  0% { content: "."; }
+  33% { content: ".."; }
+  66% { content: "..."; }
+  100% { content: ""; }
+}
+
+.status::after {
+  content: ".";
+  display: inline-block;
+  animation: dots 1.5s infinite;
+}
+
+/* Cửa sổ thông báo người chiến thắng */
+.winner-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+  width: 90%;
+  max-width: 400px;
+  z-index: 1000;
+}
+
+/* Định dạng tiêu đề trong modal */
+.winner-modal h2 {
+  color: #ffeb3b;
+  font-size: 28px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+/* Nội dung thông báo */
+.winner-modal p {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* Nút trong modal */
+.winner-modal button {
+  background: #ffeb3b;
+  color: black;
+  font-size: 18px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.winner-modal button:hover {
+  background: #ffcc00;
+}
+
+/* Nút restart */
+.btnRestart {
+  background: #ffeb3b;
+  color: black;
+  font-size: 18px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .board {
+    grid-template-columns: repeat(3, 80px);
+    gap: 5px;
+    padding: 10px;
+  }
+  .square{
+    width: 80px;
+    height: 80px;
+  }
+}
