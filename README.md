@@ -18,7 +18,7 @@ Git: khangleit
 ## Cài đặt và chạy dự án
 ### 1. Clone repository
 ```sh
-git clone <repository_url>
+git clone https://github.com/KhangLeIT/tic-tac-toe.git
 cd tic-tac-toe
 ```
 
