@@ -104,7 +104,7 @@ const Board: React.FC<BoardProps> = ({ updateHistory }) => {
 
       {/* Hiển thị trạng thái đang kiểm tra người thắng */}
       {winner && !showWinnerModal && (
-        <div className="status">Is showing winner...</div>
+        <div className="status">Is showing winner</div>
       )}
 
       {/* Hiển thị modal thông báo kết quả */}

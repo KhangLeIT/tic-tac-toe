@@ -47,6 +47,9 @@ body {
 
 /* Cấu trúc bảng trò chơi dạng lưới 3x3 */
 .board {
+
+  align-items: center;
+  justify-content: center;
   display: grid;
   grid-template-columns: repeat(3, 120px);
   gap: 8px;
@@ -202,6 +205,7 @@ body {
   0% { content: "."; }
   33% { content: ".."; }
   66% { content: "..."; }
+  100% { content: ""; }
   100% { content: "."; }
 }
 
@@ -278,4 +282,10 @@ body {
     gap: 5px;
     padding: 10px;
   }
+  .square {
+    width: 80px;
+    height: 80px;
+  }
+
 }
+
